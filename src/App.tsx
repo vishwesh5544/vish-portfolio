@@ -48,7 +48,11 @@ export default function App() {
             {/* Sidebar */}
             <aside className="hidden md:flex flex-col w-64 bg-white border-r shadow-sm p-6 space-y-4 sticky top-0 h-screen">
                 <div className="flex flex-col items-center text-center">
-                    <img src={profileImg} alt="Profile" className="w-24 h-24 rounded-full object-cover border" />
+                    <img
+                        src={profileImg}
+                        alt="rofile picture of Vishwesh Shukla, Software Engineer and Architect"
+                        className="w-24 h-24 rounded-full object-cover border"
+                    />
                     <h1 className="text-lg font-bold mt-2">{personalDetails.name}</h1>
                     <p className="text-sm text-gray-500">{personalDetails.title}</p>
                 </div>
