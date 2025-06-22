@@ -7,14 +7,26 @@ export interface PersonalDetails {
     summary: string;
 }
 
+export interface Skill {
+    name: string;
+    proficiency: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+    yearsOfExperience?: number;
+    description?: string;
+    category?: string;
+}
+
 export interface SkillSet {
-    programmingLanguages: string[];
-    frameworks: string[];
-    tools: string[];
-    cloud: string[];
-    devOps: string[];
-    frontend: string[];
-    databases: string[];
+    programmingLanguages: Skill[];
+    frameworks: Skill[];
+    tools: Skill[];
+    cloud: Skill[];
+    devOps: Skill[];
+    frontend: Skill[];
+    databases: Skill[];
+    aiml: Skill[];
+    caching: Skill[];
+    architecture: Skill[];
+    leadership: Skill[];
 }
 
 export interface ExperienceItem {
