@@ -20,6 +20,10 @@ jobs:
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    env:
+      # Opt in to Node.js 24 runtime for JavaScript-based GitHub Actions now,
+      # instead of waiting for the platform-wide default switch.
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     # Permissions required by actions/checkout and workflow internals.
     permissions:
@@ -28,13 +32,13 @@ jobs:
     steps:
       # 1) Fetch repository code.
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # 2) Install Node.js and enable Yarn dependency cache.
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: yarn
 
       # 3) Install dependencies exactly from yarn.lock for reproducible builds.
@@ -45,15 +49,19 @@ jobs:
       - name: Build app
         run: yarn build
 
-      # 5) Deploy dist/ to Firebase Hosting live channel.
-      # Required secrets/config:
-      # - GITHUB_TOKEN is auto-provided by GitHub Actions.
-      # - FIREBASE_SERVICE_ACCOUNT must be added as a repository secret
-      #   containing the full Firebase service-account JSON.
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: vish-portfolio-9156b
-          channelId: live
+      # 5) Install Firebase CLI.
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # 6) Materialize service-account JSON from GitHub Secret.
+      #    Keep this secret value as the full JSON document.
+      - name: Prepare Firebase credentials
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "${{ github.workspace }}/firebase-service-account.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${{ github.workspace }}/firebase-service-account.json" >> "$GITHUB_ENV"
+
+      # 7) Deploy dist/ to Firebase Hosting live channel.
+      - name: Deploy to Firebase Hosting (live)
+        run: firebase deploy --only hosting --project vish-portfolio-9156b --non-interactive
