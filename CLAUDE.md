@@ -8,7 +8,7 @@ This file is the primary context document for AI assistants (Claude Code, Codex,
 
 **What it is:** Personal portfolio for Vishwesh Shukla — Software Engineer & Architect.
 
-**Live URL:** https://vishcodes.live/
+**Live URL:** https://vishweshshukla.com/
 
 **Brand voice:** "Self-forged. Purpose-built. I architect systems and shape storms."
 - Problem solver first, engineer second
@@ -43,7 +43,7 @@ yarn build        # TypeScript check + Vite production build → dist/
 yarn lint         # ESLint
 yarn preview      # Preview production build locally
 
-firebase deploy   # Deploy dist/ to Firebase Hosting (vishcodes.live)
+firebase deploy   # Deploy dist/ to Firebase Hosting (vishweshshukla.com)
 ```
 
 > Always run `yarn build` before `firebase deploy` to ensure dist/ is up to date.
@@ -206,7 +206,7 @@ SoftSkill       = string
 - Hosting public dir: `dist/`
 - SPA rewrites: all routes → `/index.html`
 - Deploy command: `yarn build && firebase deploy`
-- Live at: https://vishcodes.live/
+- Live at: https://vishweshshukla.com/
 
 ---
 

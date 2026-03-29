@@ -7,7 +7,7 @@ Context file for AI coding agents (OpenAI Codex CLI, Claude Code, GitHub Copilot
 ## Project Overview
 
 Personal portfolio for Vishwesh Shukla — Software Engineer & Architect.
-- Live at: https://vishcodes.live/
+- Live at: https://vishweshshukla.com/
 - Static SPA deployed to Firebase Hosting
 - Dark-themed, data-driven, tab-based navigation
 
@@ -30,7 +30,7 @@ Personal portfolio for Vishwesh Shukla — Software Engineer & Architect.
 yarn dev          # Dev server
 yarn build        # Typecheck + production build → dist/
 yarn lint         # ESLint
-firebase deploy   # Deploy dist/ to vishcodes.live
+firebase deploy   # Deploy dist/ to vishweshshukla.com
 ```
 
 ---
