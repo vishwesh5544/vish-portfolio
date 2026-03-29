@@ -1,0 +1,14 @@
+{
+  "model": "claude-sonnet-4-6",
+  "permissions": {
+    "allow": [
+      "Bash(yarn dev)",
+      "Bash(yarn build)",
+      "Bash(yarn lint)",
+      "Bash(yarn preview)",
+      "Bash(yarn install)",
+      "Bash(firebase deploy)"
+    ],
+    "deny": []
+  }
+}
