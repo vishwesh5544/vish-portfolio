@@ -68,10 +68,10 @@ export default function OverviewSection() {
         <div className="space-y-10 max-w-4xl mx-auto">
             {/* Hero */}
             <div className="space-y-3">
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#38BDF8] bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#38BDF8] bg-clip-text text-transparent break-words">
                     {personalDetails.headline ?? personalDetails.title}
                 </h1>
-                {introLine && <p className="text-xl text-[#94A3B8] font-medium">{introLine}</p>}
+                {introLine && <p className="text-base sm:text-lg md:text-xl text-[#94A3B8] font-medium break-words">{introLine}</p>}
                 {remainingSummary && (
                     <p className="text-sm text-[#94A3B8] leading-relaxed whitespace-pre-line max-w-3xl pt-1">
                         {remainingSummary}
@@ -99,8 +99,8 @@ export default function OverviewSection() {
                 </h2>
                 <div className="space-y-3">
                     {coreExpertise.map(({ label, items }) => (
-                        <div key={label} className="flex flex-wrap items-center gap-2">
-                            <span className="text-xs text-[#475569] uppercase tracking-wider font-medium w-32 shrink-0">
+                        <div key={label} className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2">
+                            <span className="text-xs text-[#475569] uppercase tracking-wider font-medium sm:w-32 sm:shrink-0">
                                 {label}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
@@ -134,15 +134,15 @@ export default function OverviewSection() {
             </div>
 
             {/* Contact row */}
-            <div className="flex flex-wrap items-center gap-5 pt-2">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-5 pt-2">
                 <a
                     href={`mailto:${personalDetails.email}`}
-                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors break-all"
                 >
                     <Mail size={15} />
                     {personalDetails.email}
                 </a>
-                <span className="flex items-center gap-2 text-sm text-[#94A3B8]">
+                <span className="flex items-center gap-2 text-sm text-[#94A3B8] break-words">
                     <MapPin size={15} />
                     {personalDetails.location}
                 </span>
@@ -150,7 +150,7 @@ export default function OverviewSection() {
                     href={Socials.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors break-all"
                 >
                     <Github size={15} />
                     github.com/vishwesh5544
@@ -159,7 +159,7 @@ export default function OverviewSection() {
                     href={Socials.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors break-all"
                 >
                     <Linkedin size={15} />
                     linkedin.com/in/vishwesh23

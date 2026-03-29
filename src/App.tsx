@@ -44,7 +44,49 @@ export default function App() {
     };
 
     return (
-        <div className="min-h-screen bg-[#080B12] dot-grid-bg text-[#E2E8F0] flex">
+        <div className="min-h-dvh bg-[#080B12] dot-grid-bg text-[#E2E8F0] md:flex">
+            {/* Mobile Header + Nav */}
+            <header className="md:hidden sticky top-0 z-30 border-b border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85">
+                <div className="px-4 pt-4 pb-3 flex items-center gap-3">
+                    <div className="p-0.5 rounded-full bg-gradient-to-br from-[#38BDF8] to-[#818CF8] shrink-0">
+                        <img
+                            src={profileImg}
+                            alt="Profile picture of Vishwesh Shukla, Software Engineer and Architect"
+                            className="w-12 h-12 rounded-full object-cover border-2 border-[#0F1420]"
+                        />
+                    </div>
+                    <div className="min-w-0">
+                        <h1 className="text-sm font-semibold text-[#E2E8F0] truncate">{personalDetails.name}</h1>
+                        <p className="text-xs text-[#94A3B8] truncate">{personalDetails.title}</p>
+                    </div>
+                    <div className="ml-auto flex items-center gap-3 shrink-0">
+                        <a href={Socials.github} target="_blank" rel="noreferrer" className="text-[#475569] hover:text-[#38BDF8] transition-colors">
+                            <FaGithub className="w-5 h-5" />
+                        </a>
+                        <a href={Socials.linkedin} target="_blank" rel="noreferrer" className="text-[#475569] hover:text-[#38BDF8] transition-colors">
+                            <FaLinkedin className="w-5 h-5" />
+                        </a>
+                    </div>
+                </div>
+                <nav className="px-4 pb-3 overflow-x-auto">
+                    <div className="flex items-center gap-2 min-w-max">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`text-sm px-3 py-1.5 rounded-lg transition-all font-medium border ${
+                                    activeTab === tab.id
+                                        ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30"
+                                        : "text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#1E2840] border-[#1E2840]"
+                                }`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                </nav>
+            </header>
+
             {/* Sidebar */}
             <aside className="hidden md:flex flex-col w-64 bg-[#0F1420] border-r border-[#1E2840] p-6 space-y-4 sticky top-0 h-screen">
                 <div className="flex flex-col items-center text-center space-y-2">
@@ -90,8 +132,8 @@ export default function App() {
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 h-screen overflow-y-auto">
-                <div className="min-h-screen w-full px-4 md:px-12 py-16">
+            <main className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
+                <div className="min-h-dvh w-full px-4 md:px-12 py-8 md:py-16">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
