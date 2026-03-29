@@ -25,8 +25,20 @@ const tabs = [
 
 export default function App() {
     const [activeTab, setActiveTab] = useState("overview");
+
+    const handleTabChange = (tab: string) => {
+        setActiveTab(tab);
+        window.scrollTo(0, 0);
+        mainRef.current?.scrollTo(0, 0);
+    };
     const [showScrollTop, setShowScrollTop] = useState(false);
     const mainRef = useRef<HTMLElement>(null);
+
+    // Disable browser scroll restoration so reload always starts at top
+    useEffect(() => {
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         // On mobile the window scrolls; on desktop the <main> element scrolls
@@ -106,7 +118,7 @@ export default function App() {
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabChange(tab.id)}
                             className={`text-left text-sm px-4 py-2 rounded-lg transition-all w-full font-medium ${
                                 activeTab === tab.id
                                     ? "bg-[#38BDF8]/15 text-[#38BDF8] border border-[#38BDF8]/30"
@@ -175,7 +187,7 @@ export default function App() {
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabChange(tab.id)}
                             className={`px-2 py-2 rounded-lg text-[11px] font-medium transition-colors ${
                                 activeTab === tab.id
                                     ? "bg-[#38BDF8]/15 text-[#38BDF8]"
