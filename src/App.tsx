@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Globe } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Globe, ArrowUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -25,6 +25,23 @@ const tabs = [
 
 export default function App() {
     const [activeTab, setActiveTab] = useState("overview");
+    const [showScrollTop, setShowScrollTop] = useState(false);
+    const mainRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        // On mobile the window scrolls; on desktop the <main> element scrolls
+        const onWindowScroll = () => setShowScrollTop(window.scrollY > 200);
+        const onMainScroll = () => {
+            if (mainRef.current) setShowScrollTop(mainRef.current.scrollTop > 200);
+        };
+        window.addEventListener("scroll", onWindowScroll);
+        const el = mainRef.current;
+        el?.addEventListener("scroll", onMainScroll);
+        return () => {
+            window.removeEventListener("scroll", onWindowScroll);
+            el?.removeEventListener("scroll", onMainScroll);
+        };
+    }, []);
 
     const renderSection = () => {
         switch (activeTab) {
@@ -115,7 +132,7 @@ export default function App() {
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
+            <main ref={mainRef} className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
                 <div className="min-h-dvh w-full px-4 md:px-12 pt-8 md:py-16 pb-28 md:pb-16">
                     <AnimatePresence mode="wait">
                         <motion.div
@@ -131,6 +148,26 @@ export default function App() {
                     </AnimatePresence>
                 </div>
             </main>
+
+            {/* Scroll to top FAB — mobile only */}
+            <AnimatePresence>
+                {showScrollTop && (
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={() => {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                            mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        className="md:hidden fixed bottom-20 right-4 z-50 w-10 h-10 rounded-full bg-[#0F1420] border border-[#38BDF8]/40 text-[#38BDF8] flex items-center justify-center shadow-lg shadow-[#080B12]/60"
+                        aria-label="Scroll to top"
+                    >
+                        <ArrowUp size={18} strokeWidth={2.5} />
+                    </motion.button>
+                )}
+            </AnimatePresence>
 
             {/* Mobile Bottom Nav */}
             <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2">

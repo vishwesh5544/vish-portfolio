@@ -103,8 +103,8 @@ export default function OverviewSection() {
                 </h2>
                 <div className="space-y-4">
                     {coreExpertise.map(({ label, items, ai }) => (
-                        <div key={label} className="grid grid-cols-[10rem_1fr] items-start gap-3">
-                            <span className={`text-xs uppercase tracking-wider font-medium pt-1 leading-snug flex items-center gap-1.5 ${ai ? "text-[#818CF8]" : "text-[#475569]"}`}>
+                        <div key={label} className="flex flex-col sm:grid sm:grid-cols-[10rem_1fr] items-start gap-1.5 sm:gap-3">
+                            <span className={`text-xs uppercase tracking-wider font-medium leading-snug flex items-center gap-1.5 shrink-0 ${ai ? "text-[#818CF8]" : "text-[#475569]"}`}>
                                 {label}
                                 {ai && <span className="text-[9px] px-1 py-0.5 rounded bg-[#818CF8]/20 text-[#818CF8] font-bold">AI</span>}
                             </span>
