@@ -1,0 +1,59 @@
+name: Deploy To Firebase Hosting
+
+on:
+  # Run automatically whenever code is pushed to main.
+  push:
+    branches:
+      - main
+
+  # Allow manual trigger from the GitHub Actions UI.
+  workflow_dispatch:
+
+# Avoid overlapping deploys to the same branch.
+# If a newer commit is pushed while a deploy is running,
+# the older deploy run will be canceled.
+concurrency:
+  group: firebase-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    # Permissions required by actions/checkout and workflow internals.
+    permissions:
+      contents: read
+
+    steps:
+      # 1) Fetch repository code.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) Install Node.js and enable Yarn dependency cache.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      # 3) Install dependencies exactly from yarn.lock for reproducible builds.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # 4) Build production assets into dist/ (as configured in firebase.json).
+      - name: Build app
+        run: yarn build
+
+      # 5) Deploy dist/ to Firebase Hosting live channel.
+      # Required secrets/config:
+      # - GITHUB_TOKEN is auto-provided by GitHub Actions.
+      # - FIREBASE_SERVICE_ACCOUNT must be added as a repository secret
+      #   containing the full Firebase service-account JSON.
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: vish-portfolio-9156b
+          channelId: live
