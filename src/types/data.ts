@@ -5,6 +5,7 @@ export interface PersonalDetails {
     email: string;
     location: string;
     summary: string;
+    headline?: string;
 }
 
 export interface Skill {
@@ -27,6 +28,9 @@ export interface SkillSet {
     caching: Skill[];
     architecture: Skill[];
     leadership: Skill[];
+    developerPlatforms: Skill[];
+    operatingSystems: Skill[];
+    personalPlatforms: Skill[];
 }
 
 export interface ExperienceItem {
@@ -38,6 +42,7 @@ export interface ExperienceItem {
 
 export interface Project {
     name: string;
+    description?: string;
     stack: string[];
     cloud?: string[];
     notes?: string[];

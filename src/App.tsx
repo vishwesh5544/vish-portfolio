@@ -44,26 +44,31 @@ export default function App() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-slate-100 text-gray-900 flex">
+        <div className="min-h-screen bg-[#080B12] dot-grid-bg text-[#E2E8F0] flex">
             {/* Sidebar */}
-            <aside className="hidden md:flex flex-col w-64 bg-white border-r shadow-sm p-6 space-y-4 sticky top-0 h-screen">
-                <div className="flex flex-col items-center text-center">
-                    <img
-                        src={profileImg}
-                        alt="rofile picture of Vishwesh Shukla, Software Engineer and Architect"
-                        className="w-24 h-24 rounded-full object-cover border"
-                    />
-                    <h1 className="text-lg font-bold mt-2">{personalDetails.name}</h1>
-                    <p className="text-sm text-gray-500">{personalDetails.title}</p>
+            <aside className="hidden md:flex flex-col w-64 bg-[#0F1420] border-r border-[#1E2840] p-6 space-y-4 sticky top-0 h-screen">
+                <div className="flex flex-col items-center text-center space-y-2">
+                    <div className="p-0.5 rounded-full bg-gradient-to-br from-[#38BDF8] to-[#818CF8]">
+                        <img
+                            src={profileImg}
+                            alt="Profile picture of Vishwesh Shukla, Software Engineer and Architect"
+                            className="w-24 h-24 rounded-full object-cover border-2 border-[#0F1420]"
+                        />
+                    </div>
+                    <h1 className="text-base font-bold text-[#E2E8F0] mt-2">{personalDetails.name}</h1>
+                    <p className="text-xs text-[#94A3B8]">{personalDetails.title}</p>
+                    <p className="text-xs italic text-[#475569]">Self-forged. Purpose-built.</p>
                 </div>
 
-                <nav className="flex-1 mt-6 space-y-2">
+                <nav className="flex-1 mt-6 space-y-1">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`text-left text-sm px-4 py-2 rounded transition w-full font-medium ${
-                                activeTab === tab.id ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-100"
+                            className={`text-left text-sm px-4 py-2 rounded-lg transition-all w-full font-medium ${
+                                activeTab === tab.id
+                                    ? "bg-[#38BDF8]/15 text-[#38BDF8] border border-[#38BDF8]/30"
+                                    : "text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#1E2840] border border-transparent"
                             }`}
                         >
                             {tab.label}
@@ -71,15 +76,15 @@ export default function App() {
                     ))}
                 </nav>
 
-                <div className="flex justify-center gap-3 mt-auto">
-                    <a href={Socials.github} target="_blank" rel="noreferrer">
-                        <FaGithub className="w-5 h-5 text-gray-600 hover:text-black" />
+                <div className="flex justify-center gap-4 mt-auto pt-4 border-t border-[#1E2840]">
+                    <a href={Socials.github} target="_blank" rel="noreferrer" className="text-[#475569] hover:text-[#38BDF8] transition-colors">
+                        <FaGithub className="w-5 h-5" />
                     </a>
-                    <a href={Socials.linkedin} target="_blank" rel="noreferrer">
-                        <FaLinkedin className="w-5 h-5 text-gray-600 hover:text-black" />
+                    <a href={Socials.linkedin} target="_blank" rel="noreferrer" className="text-[#475569] hover:text-[#38BDF8] transition-colors">
+                        <FaLinkedin className="w-5 h-5" />
                     </a>
-                    <a href={""} target="_blank" rel="noreferrer">
-                        <Globe className="w-5 h-5 text-gray-600 hover:text-black" />
+                    <a href={""} target="_blank" rel="noreferrer" className="text-[#475569] hover:text-[#38BDF8] transition-colors">
+                        <Globe className="w-5 h-5" />
                     </a>
                 </div>
             </aside>

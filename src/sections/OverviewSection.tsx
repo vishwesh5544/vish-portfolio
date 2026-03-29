@@ -1,77 +1,169 @@
-import { Github, Mail, MapPin, Linkedin, Download, ArrowRight } from "lucide-react";
-import { personalDetails } from "@/data";
-import { Button } from "@/components/ui/button";
+import { Github, Mail, MapPin, Linkedin } from "lucide-react";
+import { personalDetails, Socials } from "@/data";
+
+const stats = [
+    { label: "Years Coding", value: "10+" },
+    { label: "Companies", value: "6+" },
+    { label: "Countries", value: "3+" },
+    { label: "AI Systems", value: "2" },
+];
+
+const identityCards = [
+    {
+        title: "Systems Architect",
+        description:
+            "Distributed microservices, EKS container orchestration, serverless pipelines, and real-time systems with encrypted communication protocols.",
+        accent: "#38BDF8",
+        icon: "🏗️",
+    },
+    {
+        title: "AI & RAG Builder",
+        description:
+            "RAG pipelines, LLM integrations (OpenAI, Gemini), MCP server development, document parsing, embeddings, and AI-driven application backends.",
+        accent: "#818CF8",
+        icon: "🤖",
+    },
+    {
+        title: "Full-Stack Executor",
+        description:
+            "React + TypeScript, Spring Boot, Flutter, Node.js — engineering end-to-end from intuitive UIs to high-performance infrastructure.",
+        accent: "#34D399",
+        icon: "⚡",
+    },
+];
+
+const coreExpertise = [
+    {
+        label: "Backend & Systems",
+        items: ["Node.js", "NestJS", "Express", "Kotlin", "Spring Boot", "Python", "FastAPI", "REST APIs", "Microservices", "gRPC"],
+    },
+    {
+        label: "Frontend & Mobile",
+        items: ["React", "TypeScript", "Tailwind CSS", "Flutter", "React Native"],
+    },
+    {
+        label: "Cloud & DevOps",
+        items: ["AWS", "Azure", "Docker", "EKS", "CI/CD", "GitHub Actions", "Nginx", "IaC"],
+    },
+    {
+        label: "Databases",
+        items: ["MongoDB", "MySQL", "Redis", "DynamoDB"],
+    },
+    {
+        label: "AI & Emerging Tech",
+        items: ["RAG", "OpenAI", "Gemini", "LLM Integration", "Embeddings", "MCP"],
+    },
+];
 
 export default function OverviewSection() {
+    const summaryParagraphs = personalDetails.summary
+        .split("\n\n")
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean);
+
+    const introLine = summaryParagraphs[0] ?? "";
+    const remainingSummary = summaryParagraphs.slice(1).join("\n\n");
+
     return (
-        <div className="space-y-8 max-w-4xl mx-auto">
-            <div className="text-center space-y-4">
-                <div className="flex justify-center gap-6 text-gray-600 text-sm">
-                    <span className="flex items-center gap-2 hover:text-purple-600 transition-colors">
-                        <Mail size={16} className="shrink-0" />
-                        <a href={`mailto:${personalDetails.email}`} className="hover:underline">
-                            {personalDetails.email}
-                        </a>
-                    </span>
-                    <span className="flex items-center gap-2">
-                        <MapPin size={16} className="shrink-0" />
-                        {personalDetails.location}
-                    </span>
+        <div className="space-y-10 max-w-4xl mx-auto">
+            {/* Hero */}
+            <div className="space-y-3">
+                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#38BDF8] bg-clip-text text-transparent">
+                    {personalDetails.headline ?? personalDetails.title}
+                </h1>
+                {introLine && <p className="text-xl text-[#94A3B8] font-medium">{introLine}</p>}
+                {remainingSummary && (
+                    <p className="text-sm text-[#94A3B8] leading-relaxed whitespace-pre-line max-w-3xl pt-1">
+                        {remainingSummary}
+                    </p>
+                )}
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {stats.map((s) => (
+                    <div
+                        key={s.label}
+                        className="bg-[#0F1420] border border-[#1E2840] rounded-xl p-4 text-center"
+                    >
+                        <div className="text-2xl font-bold text-[#38BDF8]">{s.value}</div>
+                        <div className="text-xs text-[#94A3B8] mt-1">{s.label}</div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Core Expertise */}
+            <div className="bg-[#0F1420] border border-[#1E2840] rounded-xl p-6 space-y-4">
+                <h2 className="text-sm font-semibold text-[#E2E8F0] uppercase tracking-widest pl-3 border-l-2 border-[#38BDF8]">
+                    Core Expertise
+                </h2>
+                <div className="space-y-3">
+                    {coreExpertise.map(({ label, items }) => (
+                        <div key={label} className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs text-[#475569] uppercase tracking-wider font-medium w-32 shrink-0">
+                                {label}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                                {items.map((item) => (
+                                    <span
+                                        key={item}
+                                        className="text-xs px-2 py-0.5 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] font-medium"
+                                    >
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
 
-            <div className="bg-white/50 backdrop-blur-sm shadow-lg rounded-2xl p-8 space-y-6">
-                <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
-                    {personalDetails.summary}
-                </p>
-                
-                {/* <div className="flex flex-wrap justify-center gap-4 pt-4">
-                    <Button
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-xl text-sm flex items-center gap-2 shadow-md hover:shadow-lg transition-all"
+            {/* Identity Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {identityCards.map((card) => (
+                    <div
+                        key={card.title}
+                        className="bg-[#0F1420] border border-[#1E2840] rounded-xl p-6 space-y-3 hover:border-[#38BDF8]/40 transition-colors duration-300"
+                        style={{ borderTopColor: card.accent, borderTopWidth: "2px" }}
                     >
-                        View Projects <ArrowRight size={16} />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        className="px-6 py-2 rounded-xl text-sm border-purple-200 text-purple-700 hover:bg-purple-50 flex items-center gap-2 shadow-sm"
-                    >
-                        <Download size={16} /> Download Resume
-                    </Button>
-                </div> */}
-
-                <div className="flex justify-center gap-4 pt-2">
-                    <a
-                        href="https://github.com/vishwesh5544"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-purple-600 transition-colors"
-                    >
-                        <Github size={24} />
-                    </a>
-                    <a
-                        href="https://linkedin.com/in/vishwesh23"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-purple-600 transition-colors"
-                    >
-                        <Linkedin size={24} />
-                    </a>
-                </div>
+                        <div className="text-2xl">{card.icon}</div>
+                        <h3 className="font-semibold text-[#E2E8F0]">{card.title}</h3>
+                        <p className="text-sm text-[#94A3B8] leading-relaxed">{card.description}</p>
+                    </div>
+                ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div className="bg-white/50 backdrop-blur-sm shadow-md rounded-xl p-6">
-                    <h3 className="font-semibold text-lg mb-2">Full-Stack Development</h3>
-                    <p className="text-gray-600">Expert in modern web technologies and cloud solutions</p>
-                </div>
-                <div className="bg-white/50 backdrop-blur-sm shadow-md rounded-xl p-6">
-                    <h3 className="font-semibold text-lg mb-2">Technical Leadership</h3>
-                    <p className="text-gray-600">Leading teams and driving technology adoption</p>
-                </div>
-                <div className="bg-white/50 backdrop-blur-sm shadow-md rounded-xl p-6">
-                    <h3 className="font-semibold text-lg mb-2">Innovation Focus</h3>
-                    <p className="text-gray-600">Implementing AI and cutting-edge solutions</p>
-                </div>
+            {/* Contact row */}
+            <div className="flex flex-wrap items-center gap-5 pt-2">
+                <a
+                    href={`mailto:${personalDetails.email}`}
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                >
+                    <Mail size={15} />
+                    {personalDetails.email}
+                </a>
+                <span className="flex items-center gap-2 text-sm text-[#94A3B8]">
+                    <MapPin size={15} />
+                    {personalDetails.location}
+                </span>
+                <a
+                    href={Socials.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                >
+                    <Github size={15} />
+                    github.com/vishwesh5544
+                </a>
+                <a
+                    href={Socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+                >
+                    <Linkedin size={15} />
+                    linkedin.com/in/vishwesh23
+                </a>
             </div>
         </div>
     );
