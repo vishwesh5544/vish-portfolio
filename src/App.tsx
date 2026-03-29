@@ -7,6 +7,7 @@ import profileImg from "@/assets/profile.jpg";
 import { personalDetails, Socials } from "@/data";
 
 import {
+    ContactSection,
     EducationSection,
     ExperienceSection,
     OverviewSection,
@@ -21,6 +22,7 @@ const tabs = [
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
     { id: "education", label: "Education" },
+    { id: "contact", label: "Contact" },
 ];
 
 export default function App() {
@@ -67,6 +69,8 @@ export default function App() {
                 return <ProjectsSection key="projects" />;
             case "education":
                 return <EducationSection key="education" />;
+            case "contact":
+                return <ContactSection key="contact" />;
             default:
                 return null;
         }
@@ -145,7 +149,7 @@ export default function App() {
 
             {/* Main content */}
             <main ref={mainRef} className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
-                <div className="min-h-dvh w-full px-4 md:px-12 pt-0 md:py-16 pb-28 md:pb-16">
+                <div className="min-h-dvh w-full px-4 md:px-12 pt-2 md:py-16 pb-28 md:pb-16">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -182,13 +186,13 @@ export default function App() {
             </AnimatePresence>
 
             {/* Mobile Bottom Nav */}
-            <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2">
-                <div className="grid grid-cols-5 gap-1">
+            <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2">
+                <div className="flex overflow-x-auto px-2 gap-1 pb-1">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => handleTabChange(tab.id)}
-                            className={`px-2 py-2 rounded-lg text-[11px] font-medium transition-colors ${
+                            className={`shrink-0 px-4 py-2 rounded-lg text-[11px] font-medium transition-colors whitespace-nowrap ${
                                 activeTab === tab.id
                                     ? "bg-[#38BDF8]/15 text-[#38BDF8]"
                                     : "text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#1E2840]"
