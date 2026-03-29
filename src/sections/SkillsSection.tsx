@@ -1,9 +1,11 @@
 import { softSkills, technicalSkills } from "@/data";
 import { Skill } from "@/types";
 
-function SkillChip({ skill, ai }: { skill: Skill; ai?: boolean }) {
+function SkillChip({ skill, ai, leadership }: { skill: Skill; ai?: boolean; leadership?: boolean }) {
     const chipClass = ai
         ? "bg-gradient-to-r from-[#818CF8]/20 to-[#38BDF8]/15 text-[#818CF8] border border-[#818CF8]/50 hover:border-[#818CF8]/80"
+        : leadership
+        ? "bg-[#C4923A]/10 text-[#C4923A] border border-[#C4923A]/40 hover:border-[#C4923A]/70"
         : "border border-[#1E2840] text-[#94A3B8] hover:text-[#38BDF8] hover:border-[#38BDF8]/60";
 
     return (
@@ -21,11 +23,11 @@ function SkillChip({ skill, ai }: { skill: Skill; ai?: boolean }) {
 // Sections shown on the page (1-5 visible, 6-10 commented, 11 removed)
 const visibleSections = [
     // 3. Architecture & Leadership
-    { label: "Architecture & Leadership", skills: [...technicalSkills.architecture, ...technicalSkills.leadership], ai: false },
+    { label: "Architecture & Leadership", skills: [...technicalSkills.architecture, ...technicalSkills.leadership], ai: false, leadership: true },
     // 4. Frameworks & Libraries
-    { label: "Frameworks & Libraries", skills: technicalSkills.frameworks, ai: false },
+    { label: "Frameworks & Libraries", skills: technicalSkills.frameworks, ai: false, leadership: false },
     // 5. Cloud & DevOps
-    { label: "Cloud & DevOps", skills: [...technicalSkills.cloud, ...technicalSkills.devOps], ai: false },
+    { label: "Cloud & DevOps", skills: [...technicalSkills.cloud, ...technicalSkills.devOps], ai: false, leadership: false },
 ];
 
 // Commented sections (6-10):
@@ -73,14 +75,19 @@ export default function SkillsSection() {
             </div>
 
             {/* 3-5. Visible sections */}
-            {visibleSections.map(({ label, skills, ai }) => (
+            {visibleSections.map(({ label, skills, ai, leadership }) => (
                 <div key={label} className="space-y-3">
-                    <div className="pl-3 border-l-2 border-[#38BDF8]/50">
-                        <h3 className="text-xs font-semibold uppercase tracking-widest text-[#94A3B8]">{label}</h3>
+                    <div className={`pl-3 border-l-2 flex items-center gap-2 ${leadership ? "border-[#C4923A]/70" : "border-[#38BDF8]/50"}`}>
+                        <h3 className={`text-xs font-semibold uppercase tracking-widest ${leadership ? "text-[#C4923A]" : "text-[#94A3B8]"}`}>{label}</h3>
+                        {leadership && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#C4923A]/20 text-[#C4923A] font-semibold tracking-wide">
+                                Lead
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-wrap gap-2">
                         {[...skills].sort((a, b) => (b.yearsOfExperience ?? 0) - (a.yearsOfExperience ?? 0)).map((skill) => (
-                            <SkillChip key={skill.name} skill={skill} ai={ai} />
+                            <SkillChip key={skill.name} skill={skill} ai={ai} leadership={leadership} />
                         ))}
                     </div>
                 </div>

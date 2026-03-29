@@ -26,16 +26,21 @@ const identityCards = [
         title: "Full-Stack Executor",
         description:
             "React + TypeScript, Spring Boot, Flutter, Node.js — engineering end-to-end from intuitive UIs to high-performance infrastructure.",
-        accent: "#34D399",
+        accent: "#C4923A",
         icon: "⚡",
     },
 ];
 
-const coreExpertise: { label: string; items: string[]; ai?: boolean }[] = [
+const coreExpertise: { label: string; items: string[]; ai?: boolean; leadership?: boolean }[] = [
     {
         label: "AI & GenAI",
         items: ["RAG Systems", "OpenAI Integration", "Generative AI", "MCP Servers", "LLM Orchestration", "Embeddings", "scikit-learn"],
         ai: true,
+    },
+    {
+        label: "Architecture & Leadership",
+        items: ["Software Architecture", "Microservices Architecture", "Technical Leadership", "Team Leadership", "Technical Mentorship", "Strategic Planning", "System Integration"],
+        leadership: true,
     },
     {
         label: "Backend & Systems",
@@ -52,10 +57,6 @@ const coreExpertise: { label: string; items: string[]; ai?: boolean }[] = [
     {
         label: "Databases & Caching",
         items: ["MongoDB", "MySQL", "DynamoDB", "MariaDB", "Redis", "Distributed Caching"],
-    },
-    {
-        label: "Architecture & Leadership",
-        items: ["Software Architecture", "Microservices Architecture", "Technical Leadership", "Team Leadership", "Technical Mentorship", "Strategic Planning", "System Integration"],
     },
 ];
 
@@ -102,11 +103,12 @@ export default function OverviewSection() {
                     Core Expertise
                 </h2>
                 <div className="space-y-4">
-                    {coreExpertise.map(({ label, items, ai }) => (
+                    {coreExpertise.map(({ label, items, ai, leadership }) => (
                         <div key={label} className="flex flex-col sm:grid sm:grid-cols-[10rem_1fr] items-start gap-1.5 sm:gap-3">
-                            <span className={`text-xs uppercase tracking-wider font-medium leading-snug flex items-center gap-1.5 shrink-0 ${ai ? "text-[#818CF8]" : "text-[#475569]"}`}>
+                            <span className={`text-xs uppercase tracking-wider font-medium leading-snug flex items-center gap-1.5 shrink-0 ${ai ? "text-[#818CF8]" : leadership ? "text-[#C4923A]" : "text-[#475569]"}`}>
                                 {label}
                                 {ai && <span className="text-[9px] px-1 py-0.5 rounded bg-[#818CF8]/20 text-[#818CF8] font-bold">AI</span>}
+                                {leadership && <span className="text-[9px] px-1 py-0.5 rounded bg-[#C4923A]/20 text-[#C4923A] font-bold">Lead</span>}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
                                 {items.map((item) => (
@@ -115,6 +117,8 @@ export default function OverviewSection() {
                                         className={`text-xs px-2.5 py-1 rounded-md font-medium whitespace-nowrap ${
                                             ai
                                                 ? "bg-gradient-to-r from-[#818CF8]/20 to-[#38BDF8]/15 text-[#818CF8] border border-[#818CF8]/40"
+                                                : leadership
+                                                ? "bg-[#C4923A]/10 text-[#C4923A] border border-[#C4923A]/30"
                                                 : "bg-[#38BDF8]/10 text-[#38BDF8]"
                                         }`}
                                     >

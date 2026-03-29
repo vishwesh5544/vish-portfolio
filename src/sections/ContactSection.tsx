@@ -48,13 +48,38 @@ export default function ContactSection() {
                 style={{ borderTopColor: "#38BDF8", borderTopWidth: "2px" }}>
                 <p className="text-sm text-[#E2E8F0] font-semibold">Let's build something together.</p>
                 <p className="text-sm text-[#94A3B8] leading-relaxed">
-                    Whether it's a system architecture challenge, an AI platform, or a full-stack product — I'm open to interesting problems. Reach out through any of the channels below.
+                    Whether it's a system architecture challenge, an AI platform, a full-stack product, or a team that needs technical leadership — I'm open to interesting problems. Reach out through any of the channels below.
                 </p>
                 <div className="flex items-center gap-2 pt-1 text-xs text-[#475569]">
                     <MapPin size={13} />
                     {personalDetails.location}
                 </div>
             </div>
+
+            {/* Leadership highlight */}
+            {/* <div className="bg-[#0F1420] border border-[#1E2840] rounded-xl p-6 space-y-3"
+                style={{ borderTopColor: "#C4923A", borderTopWidth: "2px" }}>
+                <div className="flex items-center gap-2">
+                    <span className="text-lg">🎯</span>
+                    <div>
+                        <h3 className="text-sm font-semibold text-[#C4923A] uppercase tracking-widest flex items-center gap-2">
+                            Leadership & Collaboration
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#C4923A]/20 text-[#C4923A] font-bold">Lead</span>
+                        </h3>
+                        <p className="text-xs text-[#475569] mt-0.5">What I bring to teams and organisations</p>
+                    </div>
+                </div>
+                <div className="flex flex-wrap gap-2 pt-1">
+                    {["Technical Leadership", "Team Leadership", "Technical Mentorship", "Strategic Planning", "Stakeholder Communication", "Architecture Decisions", "Delivery Ownership"].map((tag) => (
+                        <span key={tag} className="text-xs px-2.5 py-1 rounded-md bg-[#C4923A]/10 text-[#C4923A] border border-[#C4923A]/30 font-medium">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+                <p className="text-xs text-[#94A3B8] leading-relaxed pt-1">
+                    I've led engineering teams, owned delivery pipelines end-to-end, and driven technical decisions at the architecture level. I thrive in roles that blend hands-on execution with strategic thinking.
+                </p>
+            </div> */}
 
             {/* Contact links */}
             <div className="space-y-3">
