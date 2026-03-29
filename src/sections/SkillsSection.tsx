@@ -1,9 +1,10 @@
 import { softSkills, technicalSkills } from "@/data";
 import { Skill } from "@/types";
 
-function SkillChip({ skill }: { skill: Skill }) {
-    const chipClass =
-        "border border-[#1E2840] text-[#94A3B8] hover:text-[#38BDF8] hover:border-[#38BDF8]/60";
+function SkillChip({ skill, ai }: { skill: Skill; ai?: boolean }) {
+    const chipClass = ai
+        ? "bg-gradient-to-r from-[#818CF8]/20 to-[#38BDF8]/15 text-[#818CF8] border border-[#818CF8]/50 hover:border-[#818CF8]/80"
+        : "border border-[#1E2840] text-[#94A3B8] hover:text-[#38BDF8] hover:border-[#38BDF8]/60";
 
     return (
         <span
@@ -18,18 +19,18 @@ function SkillChip({ skill }: { skill: Skill }) {
 }
 
 const sections = [
-    { label: "Programming Languages", skills: technicalSkills.programmingLanguages },
-    { label: "Frameworks & Libraries", skills: technicalSkills.frameworks },
-    { label: "Frontend & UI", skills: technicalSkills.frontend },
-    { label: "Development Tools", skills: technicalSkills.tools },
-    { label: "Cloud & DevOps", skills: [...technicalSkills.cloud, ...technicalSkills.devOps] },
-    { label: "Architecture & Leadership", skills: [...technicalSkills.architecture, ...technicalSkills.leadership] },
-    { label: "AI & Machine Learning", skills: technicalSkills.aiml },
-    { label: "Caching & Performance", skills: technicalSkills.caching },
-    { label: "Databases", skills: technicalSkills.databases },
-    { label: "Developer Platforms", skills: technicalSkills.developerPlatforms },
-    { label: "Operating Systems", skills: technicalSkills.operatingSystems },
-    { label: "Personal Platforms", skills: technicalSkills.personalPlatforms },
+    { label: "Programming Languages", skills: technicalSkills.programmingLanguages, ai: false },
+    { label: "Frameworks & Libraries", skills: technicalSkills.frameworks, ai: false },
+    { label: "Frontend & UI", skills: technicalSkills.frontend, ai: false },
+    { label: "Development Tools", skills: technicalSkills.tools, ai: false },
+    { label: "Cloud & DevOps", skills: [...technicalSkills.cloud, ...technicalSkills.devOps], ai: false },
+    { label: "Architecture & Leadership", skills: [...technicalSkills.architecture, ...technicalSkills.leadership], ai: false },
+    { label: "AI & Machine Learning", skills: technicalSkills.aiml, ai: true },
+    { label: "Caching & Performance", skills: technicalSkills.caching, ai: false },
+    { label: "Databases", skills: technicalSkills.databases, ai: false },
+    { label: "Developer Platforms", skills: technicalSkills.developerPlatforms, ai: false },
+    { label: "Operating Systems", skills: technicalSkills.operatingSystems, ai: false },
+    { label: "Personal Platforms", skills: technicalSkills.personalPlatforms, ai: false },
 ];
 
 export default function SkillsSection() {
@@ -39,16 +40,21 @@ export default function SkillsSection() {
                 Skills
             </h2>
 
-            {sections.map(({ label, skills }) => (
+            {sections.map(({ label, skills, ai }) => (
                 <div key={label} className="space-y-3">
-                    <div className="pl-3 border-l-2 border-[#38BDF8]/50">
-                        <h3 className="text-xs font-semibold text-[#94A3B8] uppercase tracking-widest">
+                    <div className={`pl-3 border-l-2 flex items-center gap-2 ${ai ? "border-[#818CF8]/70" : "border-[#38BDF8]/50"}`}>
+                        <h3 className={`text-xs font-semibold uppercase tracking-widest ${ai ? "text-[#818CF8]" : "text-[#94A3B8]"}`}>
                             {label}
                         </h3>
+                        {ai && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#818CF8]/20 text-[#818CF8] font-semibold tracking-wide">
+                                AI
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        {skills.map((skill) => (
-                            <SkillChip key={skill.name} skill={skill} />
+                        {[...skills].sort((a, b) => (b.yearsOfExperience ?? 0) - (a.yearsOfExperience ?? 0)).map((skill) => (
+                            <SkillChip key={skill.name} skill={skill} ai={ai} />
                         ))}
                     </div>
                 </div>

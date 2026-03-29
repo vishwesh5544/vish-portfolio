@@ -10,17 +10,15 @@ export const personalDetails: PersonalDetails = {
   location: "Ahmedabad, GJ, India",
   summary: `Who am I? Self-forged. Purpose-built. I architect systems and shape storms.
 
-As a seasoned Software Engineer and Architect, I specialize in building scalable, enterprise-grade systems that solve complex business challenges across domains like media, e-commerce, and IT services. My strength lies in translating ambiguous requirements into robust, maintainable, and secure software systems - driving delivery from ideation to execution with clarity and precision.
+I'm a Software Engineer and Architect who builds systems that actually survive production — not just demos. Across domains like media, e-commerce, SaaS, and enterprise IT, I operate at the intersection of technical depth and business clarity. I take ambiguous problems, define the architecture, and drive delivery end-to-end with precision.
 
-I excel in architecture, backend infrastructure, and end-to-end solution design. I've led the development of distributed microservice architectures, real-time systems with secure communication protocols, and high-throughput data pipelines for event-driven platforms. My work spans cloud-native deployments, serverless computing, and scalable container orchestration in production environments.
+My foundation is backend and systems engineering. I've designed distributed microservice platforms handling high-throughput workloads, built real-time communication systems using end-to-end encryption protocols, and architected event-driven pipelines for data-intensive platforms. On the infrastructure side, I've orchestrated EKS clusters, built serverless platforms on AWS Lambda and API Gateway, and implemented IaC workflows that make environments reproducible and deployable in minutes — not days.
 
-My architectural depth extends into AI-driven platforms, including Retrieval-Augmented Generation (RAG), orchestrator-based AI backends, and LLM-powered applications. I've designed service-oriented systems that integrate AI capabilities with application logic, while building internal tools to manage resource utilization, data workflows, and infrastructure monitoring.
+AI is where I've pushed deepest in recent years. I don't just integrate APIs — I architect the full stack behind intelligent systems. That means RAG pipelines with custom embedding strategies, orchestrator-based LLM backends, MCP server development, and building the internal tooling that makes AI features observable and operationally sound. I've shipped AI-powered products where the hard engineering work isn't the model — it's everything around it.
 
-I'm equally comfortable on the front lines of development - delivering full-stack features and cross-platform apps with tight integration between backend services and intuitive user interfaces. My experience spans building cohesive systems that prioritize performance, UX, and maintainability.
+Across the full product surface, I execute. React + TypeScript for tight, maintainable frontends. Spring Boot and Node.js for high-performance backend services. Flutter for cross-platform mobile. GitHub Actions and IaC pipelines that give teams confidence to ship fast. I don't hand off cleanly at a layer boundary — I own the outcome.
 
-In leadership roles, I've built and led high-performing development teams, owned delivery pipelines, and ensured technical strategies align with business goals. I specialize in stakeholder communication, technical decision-making, and guiding teams through architectural and engineering trade-offs. I thrive in roles that demand both big-picture thinking and hands-on execution.
+In senior and lead roles, I've made architectural calls under pressure, mentored engineers through complex problems, owned CI/CD pipelines, and kept technical strategy aligned with business objectives. I communicate clearly with stakeholders, know when to push back, and thrive in environments where both depth and velocity are expected.
 
-With strong DevOps practices - including IaC, CI/CD automation, and observability - I ensure systems are reliable, testable, and production-ready. My commitment to engineering excellence is backed by rigorous code quality standards, collaborative reviews, and continuous improvement.
-
-Passionate about solving real-world problems through technology, I continuously explore advancements in cloud infrastructure, distributed systems, and GenAI - bringing together architectural vision and execution discipline to build future-ready software.`,
+The constant across everything I've built: systems engineered to last, decisions made with intent, and code written to be understood — not just executed.`,
 };
