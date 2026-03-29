@@ -6,14 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "redirects": [
-      {
-        "source": "/profile.jpg",
-        "destination": "/",
-        "type": 301
-      }
-    ],
-    "rewrites": [
+"rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
