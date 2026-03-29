@@ -68,23 +68,6 @@ export default function App() {
                         </a>
                     </div>
                 </div>
-                <nav className="px-4 pb-3 overflow-x-auto">
-                    <div className="flex items-center gap-2 min-w-max">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`text-sm px-3 py-1.5 rounded-lg transition-all font-medium border ${
-                                    activeTab === tab.id
-                                        ? "bg-[#38BDF8]/15 text-[#38BDF8] border-[#38BDF8]/30"
-                                        : "text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#1E2840] border-[#1E2840]"
-                                }`}
-                            >
-                                {tab.label}
-                            </button>
-                        ))}
-                    </div>
-                </nav>
             </header>
 
             {/* Sidebar */}
@@ -133,7 +116,7 @@ export default function App() {
 
             {/* Main content */}
             <main className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
-                <div className="min-h-dvh w-full px-4 md:px-12 py-8 md:py-16">
+                <div className="min-h-dvh w-full px-4 md:px-12 pt-8 md:py-16 pb-28 md:pb-16">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -148,6 +131,25 @@ export default function App() {
                     </AnimatePresence>
                 </div>
             </main>
+
+            {/* Mobile Bottom Nav */}
+            <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2">
+                <div className="grid grid-cols-5 gap-1">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-2 py-2 rounded-lg text-[11px] font-medium transition-colors ${
+                                activeTab === tab.id
+                                    ? "bg-[#38BDF8]/15 text-[#38BDF8]"
+                                    : "text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-[#1E2840]"
+                            }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </nav>
         </div>
     );
 }
