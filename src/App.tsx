@@ -187,7 +187,7 @@ export default function App() {
 
             {/* Mobile Bottom Nav */}
             <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[#1E2840] bg-[#0F1420]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0F1420]/85 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2">
-                <div className="flex overflow-x-auto px-2 gap-1 pb-1">
+                <div className="flex overflow-x-auto px-2 gap-1 pb-2">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
