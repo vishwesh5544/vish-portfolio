@@ -133,7 +133,7 @@ export default function App() {
 
             {/* Main content */}
             <main ref={mainRef} className="flex-1 min-h-dvh md:h-screen overflow-y-auto">
-                <div className="min-h-dvh w-full px-4 md:px-12 pt-8 md:py-16 pb-28 md:pb-16">
+                <div className="min-h-dvh w-full px-4 md:px-12 pt-0 md:py-16 pb-28 md:pb-16">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -161,7 +161,7 @@ export default function App() {
                             window.scrollTo({ top: 0, behavior: "smooth" });
                             mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        className="md:hidden fixed bottom-20 right-4 z-50 w-10 h-10 rounded-full bg-[#0F1420] border border-[#38BDF8]/40 text-[#38BDF8] flex items-center justify-center shadow-lg shadow-[#080B12]/60"
+                        className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-50 w-10 h-10 rounded-full bg-[#0F1420] border border-[#38BDF8]/40 text-[#38BDF8] flex items-center justify-center shadow-lg shadow-[#080B12]/60"
                         aria-label="Scroll to top"
                     >
                         <ArrowUp size={18} strokeWidth={2.5} />
