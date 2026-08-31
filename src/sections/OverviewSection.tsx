@@ -1,4 +1,4 @@
-import { Github, Mail, MapPin, Linkedin } from "lucide-react";
+import { Github, Mail, MapPin, Linkedin, Calendar } from "lucide-react";
 import { personalDetails, Socials } from "@/data";
 
 const stats = [
@@ -226,6 +226,24 @@ export default function OverviewSection() {
                 >
                     <Linkedin size={15} />
                     linkedin.com/in/vishwesh23
+                </a>
+            </div>
+
+            {/* Calendly CTA */}
+            <div className="bg-[#0F1420] border border-[#1E2840] rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                style={{ borderLeftColor: "#34D399", borderLeftWidth: "3px" }}>
+                <div className="space-y-1">
+                    <p className="text-base font-semibold text-[#E2E8F0]">Let's build something.</p>
+                    <p className="text-sm text-[#94A3B8]">Book a 30-minute call — no pressure, just a conversation.</p>
+                </div>
+                <a
+                    href={Socials.calendly}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#34D399]/15 border border-[#34D399]/40 text-[#34D399] text-sm font-semibold hover:bg-[#34D399]/25 hover:border-[#34D399]/70 transition-all duration-200 shrink-0"
+                >
+                    <Calendar size={15} />
+                    Schedule a call
                 </a>
             </div>
         </div>

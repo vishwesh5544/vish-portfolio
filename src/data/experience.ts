@@ -2,6 +2,18 @@ import { ExperienceItem } from "../types";
 
 export const experience: ExperienceItem[] = [
   {
+    company: "Nextgen Workforce Solutions",
+    role: "Full Stack Lead (Remote)",
+    duration: "Apr 2024 - Aug 2026",
+    highlights: [
+      "Led full-stack development of a SaaS platform for workforce management — covering attendance tracking, labor compliance, and employee scheduling",
+      "Consulted on product architecture and roadmap decisions, shaping the technical direction of a compliance-critical SaaS product",
+      "Built cross-platform features using React and React Native; engineered geo-tracking and geo-fencing systems in the mobile app — including continuous location updates, boundary violation detection, and real-time geo compliance monitoring for labor enforcement",
+      "Developed backend services in PHP (CodeIgniter); built Python-powered AI and Generative AI features integrated into the platform; designed and managed AWS and Firebase infrastructure with DevOps pipelines",
+      "Mentored engineers and led sprint planning, code reviews, and technical decision-making as the engineering lead",
+    ],
+  },
+  {
     company: "Tezda Pvt Ltd",
     role: "Senior Software Developer (Remote)",
     duration: "Nov 2023 - Present",
