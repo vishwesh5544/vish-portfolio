@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Globe, ArrowUp } from "lucide-react";
+import { Globe, ArrowUp, Calendar } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -116,6 +116,15 @@ export default function App() {
                     <h1 className="text-base font-bold text-[#E2E8F0] mt-2">{personalDetails.name}</h1>
                     <p className="text-xs text-[#94A3B8]">{personalDetails.title}</p>
                     <p className="text-xs italic text-[#475569]">Self-forged. Purpose-built.</p>
+                    <a
+                        href={Socials.calendly}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#34D399]/10 border border-[#34D399]/30 text-[#34D399] text-xs font-semibold hover:bg-[#34D399]/20 hover:border-[#34D399]/60 transition-all duration-200 w-full justify-center"
+                    >
+                        <Calendar size={13} />
+                        Let's build something
+                    </a>
                 </div>
 
                 <nav className="flex-1 mt-6 space-y-1">
